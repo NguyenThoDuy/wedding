@@ -25,3 +25,16 @@ function getRemainingTime(et) {
      }
      var timeForBigDay = new Date(Date.parse(new Date()) + 1 * 24 * 60 * 60 * 1000);
      initRemainingTime('reminder-clock', timeForBigDay);
+
+
+     // Kiểm tra kích thước của màn hình để xác định thiết bị là di động hay máy tính
+     document.addEventListener('DOMContentLoaded', function() {
+         const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+         const imageElement = document.getElementById("image_1");
+         console.log(imageElement);
+         
+         // Kiểm tra xem có phải là màn hình lớn hơn 768px và phần tử có tồn tại không
+         if (screenWidth > 768 && imageElement !== null) {
+             imageElement.style.display = 'none';
+         }
+     });
