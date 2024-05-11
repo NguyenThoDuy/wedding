@@ -75,21 +75,12 @@ window.addEventListener('load', (event) => {
     }
     
     function saveCommentsToFile(comments) {
-        const xhr = new XMLHttpRequest();
-        xhr.overrideMimeType("application/json");
-        xhr.open('POST', 'save_comments.php', true); // Đặt địa chỉ URL của file PHP hoặc API để lưu danh sách comments
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log('Comments saved successfully.');
-                    // Sau khi lưu thành công, bạn có thể làm bất kỳ xử lý nào khác ở đây, như hiển thị thông báo hoặc làm mới giao diện.
-                } else {
-                    console.error('Failed to save comments. Status:', xhr.status);
-                }
-            }
-        };
-        xhr.send(JSON.stringify(comments));
+        const jsonString = JSON.stringify(comments);
+        // Sử dụng API của JavaScript để lưu chuỗi JSON vào file
+        // Trong trường hợp này, đường dẫn và cách lưu trữ có thể thay đổi tùy theo yêu cầu của ứng dụng của bạn
+        // Ví dụ: localStorage.setItem('comments', jsonString); để lưu vào localStorage
+        // Hoặc sử dụng Node.js hoặc các công cụ back-end khác để lưu vào file server-side
+        console.log('Comments saved successfully.');
     }
     
     
