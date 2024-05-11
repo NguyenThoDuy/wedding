@@ -1,5 +1,3 @@
-
-
 window.addEventListener('load', (event) => {
          // Sử dụng hàm với đường dẫn đến file JSON
      const filePath = 'comments.json';
@@ -104,7 +102,10 @@ window.addEventListener('load', (event) => {
                 // Lấy thông tin từ các trường input trong form
                 const name = document.getElementById('name-input').value;
                 const content = document.getElementById('content-input').value;
-    
+
+                console.log("====> " + name);
+                console.log("====> " + content);
+
                 // Gọi hàm addComment với thông tin vừa lấy được
                 addComment(name, content);
     
