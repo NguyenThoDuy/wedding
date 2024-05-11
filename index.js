@@ -18,12 +18,17 @@ window.addEventListener('load', (event) => {
              if (xhr.readyState === 4 && xhr.status === 200) {
                  try {
                      const comments = JSON.parse(xhr.responseText);
-                     comments.forEach(comment => {
-                         console.log('ID:', comment.id);
-                         console.log('Name:', comment.name);
-                         console.log('Content:', comment.content);
-                         console.log('---------------------');
-                     });
+                    //  comments.forEach(comment => {
+                    //      console.log('ID:', comment.id);
+                    //      console.log('Name:', comment.name);
+                    //      console.log('Content:', comment.content);
+                    //      console.log('---------------------');
+                    //  });
+                    const wishBox = document.querySelector('.wish-box');
+                    comments.forEach(comment => {
+                        const commentHTML = '<div class="wish-box-item bg"><strong>' + comment.name.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;") + '</strong><p>' + comment.content.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;") + '</p></div>';
+                        wishBox.insertAdjacentHTML('afterbegin', commentHTML);
+                    });
                  } catch (error) {
                      console.error('Error parsing JSON:', error);
                  }
