@@ -73,7 +73,7 @@ window.addEventListener('load', (event) => {
         };
         xhr.send(null);
     }
-    
+    // https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec
     function saveCommentsToFile(comments) {
         const jsonString = JSON.stringify(comments);
         // Sử dụng API của JavaScript để lưu chuỗi JSON vào file
@@ -97,14 +97,42 @@ window.addEventListener('load', (event) => {
                 console.log("====> " + name);
                 console.log("====> " + content);
 
-                // Gọi hàm addComment với thông tin vừa lấy được
-                addComment(name, content);
+// Sử dụng hàm để thêm comment mới
+                addCommentToGoogleSheet(name, content);
     
                 // Optional: reset form sau khi submit
                 wishForm.reset();
             });
         }
     });
+
+    function addCommentToGoogleSheet(name, content) {
+        // Dữ liệu mới cần thêm vào
+        const newData = [name, content];
+    
+        // Xây dựng URL để gửi yêu cầu POST
+        const url = 'https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec';
+    
+        // Tạo yêu cầu XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Comment added successfully.');
+            } else {
+                console.error('Failed to add comment:', xhr.responseText);
+            }
+        };
+    
+        // Chuẩn bị dữ liệu để gửi
+        const params = 'name=' + encodeURIComponent(newData[0]) +
+                       '&content=' + encodeURIComponent(newData[1]);
+    
+        // Gửi yêu cầu POST với dữ liệu
+        xhr.send(params);
+    }
+        
     
     
      
