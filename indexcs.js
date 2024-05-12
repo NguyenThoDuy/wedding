@@ -17,7 +17,7 @@ window.addEventListener('load', (event) => {
         if(h2Element !== null){
             h2Element.innerText = 'Kính mời: ' + displayName
             let vaitro = getStartName(displayName);
-            let text = '<i style="color: rebeccapurple;">Tới dự hôn lễ của ' + vaitro + '</i>.</br> Sự hiện diện của ' + nameValueUrl + ' là lời chúc phúc tuyệt vời nhất dành cho vợ chồng ' + vaitro;
+            let text = '<i style="color: rebeccapurple;">Tới dự hôn lễ của ' + vaitro + '</i>.</br> Sự hiện diện của ' + displayName + ' là lời chúc phúc tuyệt vời nhất dành cho vợ chồng ' + vaitro;
             const h2LoiMoiElement = document.querySelector('.section-title-loi-moi');
             h2LoiMoiElement.innerHTML = text;
         }
