@@ -1,9 +1,7 @@
 // Xây dựng URL để gửi yêu cầu POST
 const url = 'https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec';
 
-
 window.addEventListener('load', (event) => {
-
     getDataFromGoogleSheet();
     // Lấy giá trị của tham số "name" từ URL
     let nameValueUrl = new URLSearchParams(window.location.search).get('name');
@@ -26,6 +24,21 @@ window.addEventListener('load', (event) => {
         }
     
 });
+
+document.addEventListener('touchstart', function() {
+    // Chỉ phát audio khi người dùng tương tác với trang web
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        const volumeOffButton = document.getElementById("playerVolumeOff");
+        const volumeOnButton = document.getElementById("playerVolumeOn");
+        if (volumeOffButton && volumeOnButton) {
+            volumeOffButton.style.display = "none";
+            volumeOnButton.style.display = "block";
+        }
+    }
+});
+
+
 
 
 function getStartName(nameValue){
