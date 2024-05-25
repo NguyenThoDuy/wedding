@@ -106,6 +106,14 @@ function readCommentsFromFile(comments) {
 };
 
 
+const scrollableContent = document.getElementById('site-footer-v-1');
+        const maxScrollTop = 1; // Đặt giới hạn cuộn ở đây
+
+        scrollableContent.addEventListener('scroll', function() {
+            if (scrollableContent.scrollTop > maxScrollTop) {
+                scrollableContent.scrollTop = maxScrollTop;
+            }
+        });
 
 // https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec
 
