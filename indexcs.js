@@ -21,11 +21,24 @@ window.addEventListener('load', (event) => {
         }
         if(displayName.length < 10){
             document.getElementById('name-input').value = displayName; 
-        }
-    
+        }   
 });
 
+
 document.addEventListener('touchstart', function() {
+    // Chỉ phát audio khi người dùng tương tác với trang web
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        const volumeOffButton = document.getElementById("playerVolumeOff");
+        const volumeOnButton = document.getElementById("playerVolumeOn");
+        if (volumeOffButton && volumeOnButton) {
+            volumeOffButton.style.display = "none";
+            volumeOnButton.style.display = "block";
+        }
+    }
+});
+
+document.addEventListener('scroll', function() {
     // Chỉ phát audio khi người dùng tương tác với trang web
     if (audioPlayer.paused) {
         audioPlayer.play();
