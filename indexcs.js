@@ -1,4 +1,4 @@
-// Xây dựng URL để gửi yêu cầu POST
+// Xây dựng URL để gửi yêu cầu POST 
 const url = 'https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec';
 
 window.addEventListener('load', (event) => {
