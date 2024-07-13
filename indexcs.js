@@ -19,7 +19,7 @@ window.addEventListener('load', (event) => {
             const h2LoiMoiElement = document.querySelector('.section-title-loi-moi');
             h2LoiMoiElement.innerHTML = text;
         }
-        if(displayName.length < 10){
+        if(displayName !== 'Bạn'){
             document.getElementById('name-input').value = displayName; 
         }   
 });
@@ -54,23 +54,26 @@ document.addEventListener('scroll', function() {
 
 
 
-function getStartName(nameValue){
-    if (nameValue.startsWith('Bạn')){
-        return 'Chúng tớ';
-    }else if (nameValue.startsWith('Anh') || nameValue.startsWith('Chị')){
-        return 'Chúng em';
-    }else if (nameValue.startsWith('Chú') || nameValue.startsWith('Cô') || nameValue.startsWith('Bác') || nameValue.startsWith('Dì')){
-        return 'Chúng cháu';
-    }else if (nameValue.startsWith('Em')){
-        return 'Anh/Chị';
-    }else if (nameValue.startsWith('Cháu')){
-        return 'Cô/Chú';
-    }else if (nameValue.startsWith('Mẹ')){
-        return 'Chúng con';
-    }else{
-        return 'Chúng tôi'
+    function getStartName(nameValue) {
+        nameValue = nameValue.toUpperCase(); 
+        console.log(nameValue)
+        if (nameValue.startsWith('BẠN')) {
+            return 'Chúng mình';
+        } else if (nameValue.startsWith('ANH') || nameValue.startsWith('CHỊ')) {
+            return 'Chúng em';
+        } else if (nameValue.startsWith('CHÚ') || nameValue.startsWith('CÔ') || nameValue.startsWith('BÁC') || nameValue.startsWith('DÌ')) {
+            return 'Chúng cháu';
+        } else if (nameValue.startsWith('EM')) {
+            return 'Anh/Chị';
+        } else if (nameValue.startsWith('CHÁU')) {
+            return 'Cô/Chú';
+        } else if (nameValue.startsWith('MẸ')) {
+            return 'Chúng con';
+        } else {
+            return 'Chúng tôi';
+        }
     }
-}
+
 
 function getDataFromGoogleSheet() {
     fetch('https://script.google.com/macros/s/AKfycbySK00-BsTEIz-8Lk-MkRJpynUynSYzrcWaNNe3_rvhymZikscGd0PjQHDq510_bklxAg/exec')
