@@ -2,7 +2,8 @@
 const url = 'https://script.google.com/macros/s/AKfycbxQDLN5O8iYe-W5X3J1YgYYRugiiS0hoUoeGgR22ysyZ1HOVHTXv-6gKy6b-A3Hh1fpfA/exec';
 
 window.addEventListener('load', (event) => {
-    getDataFromGoogleSheet();
+    setTimeout(getDataFromGoogleSheet, 0);
+    // getDataFromGoogleSheet();
     // Lấy giá trị của tham số "name" từ URL
     let nameValueUrl = new URLSearchParams(window.location.search).get('name');
     let displayName = ''
@@ -75,33 +76,33 @@ document.addEventListener('scroll', function() {
     }
 
 
-function getDataFromGoogleSheet() {
-    fetch('https://script.google.com/macros/s/AKfycbySK00-BsTEIz-8Lk-MkRJpynUynSYzrcWaNNe3_rvhymZikscGd0PjQHDq510_bklxAg/exec')
-        .then(res => res.json())
-        .then(data => {
-            const rows = data.content;
-            const jsonArray = [];
+    async function getDataFromGoogleSheet() {
+    try {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbySK00-BsTEIz-8Lk-MkRJpynUynSYzrcWaNNe3_rvhymZikscGd0PjQHDq510_bklxAg/exec');
+        const data = await res.json();
+        const rows = data.content;
+        const jsonArray = [];
 
-            rows.forEach((row, index) => {
-                if (index > 0) {
-                    const id = index;
-                    const name = row[0];
-                    const comment = row[1];
+        rows.forEach((row, index) => {
+            if (index > 0) {
+                const id = index;
+                const name = row[0];
+                const comment = row[1];
 
-                    const jsonItem = {
-                        "id": id,
-                        "name": name,
-                        "comment": comment
-                    };
-                    jsonArray.push(jsonItem);
-                }
+                const jsonItem = {
+                    "id": id,
+                    "name": name,
+                    "comment": comment
+                };
+                jsonArray.push(jsonItem);
+            }
+        });
 
-            });
-
-            console.log(jsonArray); // Log the JSON array
-            readCommentsFromFile(jsonArray);
-        })
-        .catch(error => console.error('Error fetching data:', error));
+        console.log(jsonArray); // Log the JSON array
+        readCommentsFromFile(jsonArray);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
 
